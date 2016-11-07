@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="NLPTool" default="run" basedir=".">
+	<property name="src" value="src"/>
+	<property name="dest" value="bin"/>
+	<property name="lib" value="lib"/>
+	<!--classpath-->
+	<path id="classpath">
+		<fileset file="${lib}/*.jar"/>
+		<pathelement path="${dest}"/>
+	</path>
+	<!--target-->
+	<target name="init">
+		<mkdir dir="${dest}"/>
+	</target>
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${dest}" encoding="utf-8">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+	<target name="run" depends="compile">
+		<java classname="nlp.test.IDFTest">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+	<target name="testTF" depends="compile">
+		<java classname="nlp.test.TFTest">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+</project>
